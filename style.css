@@ -12,6 +12,7 @@
   --ink-muted: #6B6F7A;     /* 次要／說明文字 */
   --ink-faint: #9599A4;     /* 版本、caption、icon */
   --brand: #FFEA41;         /* 品牌黃（點綴用） */
+  --link: #1A73E8;          /* 超連結藍 */
   --toc-bg: #F4F5F7;        /* 目錄區塊底 */
   --card-border: #E3E5EC;
   --card-border-hover: #C6CAD6;
@@ -464,10 +465,10 @@ mark {
 }
 
 a.ext-link {
-  color: var(--ink);
+  color: var(--link);
   font-weight: 500;
   text-decoration: underline;
-  text-decoration-color: var(--brand);
+  text-decoration-color: var(--link);
   text-decoration-thickness: 2px;
   text-underline-offset: 2px;
 }

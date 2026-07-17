@@ -97,9 +97,8 @@
           "編號": "4-3",
           "標題": "成果分享單元：請改用手機 APP 操作",
           "內容": [
-            { "類型": "文字", "內容": "成果分享單元需要使用相機，==無法在 Web 版操作，請改用手機 APP 完成==。" },
-            { "類型": "圖片", "檔案": "share-unit-app-1.png", "說明": "成果分享單元畫面一" },
-            { "類型": "圖片", "檔案": "share-unit-app-2.png", "說明": "成果分享單元畫面二" },
+            { "類型": "文字", "內容": "成果分享單元需要使用相機，無法在[網頁版](https://app.wordup.com.tw/)操作，==請改用手機 APP 完成==（[iOS](https://apps.apple.com/tw/app/id1447838299)、[Android](https://play.google.com/store/apps/details?id=com.wordup.androidapp)）。" },
+            { "類型": "圖片", "檔案": "share-unit-app-1.png", "說明": "成果分享單元畫面" },
             { "類型": "圖片", "檔案": "share-unit-app-3.png", "說明": "成果分享單元 APP 操作畫面" }
           ]
         },
