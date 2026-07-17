@@ -1,16 +1,109 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-Hant-TW">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>客戶用說明網站</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Word up 聰明學習平台｜操作說明與常見疑問</title>
+<meta name="description" content="Word up 聰明學習平台的操作說明與常見疑問">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='4' fill='%23FFEA41'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main>
-    <h1>網站建置中</h1>
-    <p>內容準備完成後將更新於此。</p>
-  </main>
-  <script src="script.js"></script>
+
+<main class="page">
+  <!-- 頁首 -->
+  <header class="site-header">
+    <div class="site-header__brand">
+      <div class="site-header__title-row">
+        <span class="site-header__logo" aria-hidden="true"></span>
+        <h1 id="site-title" class="site-header__title"></h1>
+      </div>
+      <p id="site-subtitle" class="site-header__subtitle"></p>
+    </div>
+    <p id="site-meta" class="site-header__meta"></p>
+  </header>
+
+  <!-- JSON 載入失敗訊息（預設隱藏） -->
+  <div id="load-error" class="load-error" hidden>
+    <p>內容載入失敗，請重新整理頁面；若持續發生，請聯繫您的顧問。</p>
+  </div>
+  <noscript>
+    <div class="load-error">
+      <p>本頁需要啟用 JavaScript 才能顯示完整內容，請於瀏覽器設定中啟用後重新整理。</p>
+    </div>
+  </noscript>
+
+  <!-- ① 平台介紹（不折疊、不列入目錄） -->
+  <section id="intro" class="intro" aria-labelledby="intro-title">
+    <h2 id="intro-title" class="section-title"></h2>
+    <div id="intro-body" class="intro__body"></div>
+  </section>
+
+  <!-- ② 目錄 -->
+  <nav id="toc" class="toc" aria-label="目錄">
+    <h2 class="toc__title">目錄</h2>
+    <div id="toc-body" class="toc__grid"></div>
+  </nav>
+
+  <!-- ③ 操作說明 -->
+  <section id="guide" class="content-section" aria-labelledby="guide-title">
+    <h2 id="guide-title" class="section-title">操作說明</h2>
+    <p id="guide-lede" class="section-lede"></p>
+    <div id="guide-body"></div>
+  </section>
+
+  <!-- ④ 常見疑問 -->
+  <section id="faq" class="content-section" aria-labelledby="faq-title">
+    <h2 id="faq-title" class="section-title">常見疑問</h2>
+    <p id="faq-lede" class="section-lede"></p>
+    <div id="faq-body"></div>
+    <div id="faq-tail" class="section-tail" hidden>
+      <span class="section-tail__dot" aria-hidden="true"></span>
+      <span id="faq-tail-text"></span>
+    </div>
+  </section>
+
+  <!-- 頁尾 -->
+  <footer id="site-footer" class="site-footer"></footer>
+</main>
+
+<!-- 浮動導覽 -->
+<div id="fab" class="fab" hidden>
+  <button type="button" id="fab-toc" class="fab__btn" aria-label="開啟目錄">
+    <span class="fab__icon" aria-hidden="true">☰</span>
+    <span class="fab__label">目錄</span>
+  </button>
+  <button type="button" id="fab-top" class="fab__btn" aria-label="回到頁面頂部">
+    <span class="fab__icon" aria-hidden="true">↑</span>
+    <span class="fab__label">頂部</span>
+  </button>
+</div>
+
+<!-- 目錄抽屜 -->
+<div id="drawer" class="drawer" hidden>
+  <div id="drawer-overlay" class="drawer__overlay"></div>
+  <div class="drawer__panel" role="dialog" aria-modal="true" aria-label="目錄">
+    <div class="drawer__head">
+      <span class="drawer__title">目錄</span>
+      <button type="button" id="drawer-close" class="drawer__close" aria-label="關閉目錄">✕</button>
+    </div>
+    <div id="drawer-body"></div>
+  </div>
+</div>
+
+<!-- 圖片燈箱 -->
+<div id="lightbox" class="lightbox" hidden>
+  <div id="lightbox-overlay" class="lightbox__overlay"></div>
+  <figure class="lightbox__stage">
+    <img id="lightbox-img" class="lightbox__img" src="" alt="">
+    <figcaption id="lightbox-cap" class="lightbox__cap"></figcaption>
+  </figure>
+  <button type="button" id="lightbox-close" class="lightbox__close" aria-label="關閉放大檢視">✕</button>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
