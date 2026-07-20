@@ -269,6 +269,7 @@
     if (e.touches.length === 2) {
       lbPinchDist = touchDist(e.touches);
       lbPinchStartScale = lbScale;
+      lbImg.style.transition = 'none';
     }
   }, { passive: true });
 
@@ -283,6 +284,12 @@
       }
     }
   }, { passive: false });
+
+  lightbox.addEventListener('touchend', function (e) {
+    if (e.touches.length < 2) {
+      lbImg.style.transition = '';
+    }
+  });
 
   document.getElementById('lightbox-overlay').addEventListener('click', closeLightbox);
   document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
