@@ -22,6 +22,19 @@
   --lightbox-mask: rgba(17, 18, 20, .74);
   --drawer-mask: rgba(17, 18, 20, .45);
   --mono: ui-monospace, Menlo, Consolas, monospace;
+
+  /* 字級（行動版於底部 media query 覆寫；調整全站字級改這裡即可） */
+  --fs-page-title: 28px;     /* 頁首主標 */
+  --fs-page-subtitle: 17px;  /* 頁首副標 */
+  --fs-section-title: 22px;  /* 章節大標 */
+  --fs-chapter: 17px;        /* 章名、折疊開合符號 */
+  --fs-body: 16px;           /* 內文、折疊標題、步驟 */
+  --fs-lede: 15.5px;         /* 章節引言、提示框內文、結尾提示 */
+  --fs-nav: 15px;            /* 目錄／抽屜連結 */
+  --fs-small: 13.5px;        /* meta、目錄標題、頁尾 */
+  --fs-badge: 12.5px;        /* 編號徽章、項目數、燈箱圖說 */
+  --fs-caption: 12px;        /* 圖說、目錄編號 */
+  --fs-caption-sm: 11px;     /* 雙欄小圖說、提示框徽章 */
 }
 
 * { box-sizing: border-box; }
@@ -88,7 +101,7 @@ button {
 
 .site-header__title {
   margin: 0;
-  font-size: 25px;
+  font-size: var(--fs-page-title);
   font-weight: 900;
   color: var(--ink);
   letter-spacing: .5px;
@@ -96,14 +109,14 @@ button {
 
 .site-header__subtitle {
   margin: 6px 0 0;
-  font-size: 15px;
+  font-size: var(--fs-page-subtitle);
   color: var(--ink-muted);
   padding-left: 23px;
 }
 
 .site-header__meta {
   margin: 0;
-  font-size: 12px;
+  font-size: var(--fs-small);
   color: var(--ink-faint);
 }
 
@@ -119,7 +132,7 @@ button {
 
 .load-error p {
   margin: 0;
-  font-size: 14px;
+  font-size: var(--fs-body);
   line-height: 1.8;
   color: var(--ink-body);
 }
@@ -130,7 +143,7 @@ button {
 
 .section-title {
   margin: 0;
-  font-size: 19px;
+  font-size: var(--fs-section-title);
   font-weight: 900;
   color: var(--ink);
 }
@@ -144,7 +157,7 @@ button {
 
 .intro__body p {
   margin: 0;
-  font-size: 14px;
+  font-size: var(--fs-body);
   color: var(--ink-soft);
   line-height: 1.85;
 }
@@ -161,7 +174,7 @@ button {
 
 .toc__title {
   margin: 0 0 16px;
-  font-size: 12px;
+  font-size: var(--fs-small);
   font-weight: 700;
   letter-spacing: 3px;
   color: var(--ink-faint);
@@ -174,7 +187,7 @@ button {
 }
 
 .toc-group__name {
-  font-size: 13px;
+  font-size: var(--fs-nav);
   font-weight: 700;
   color: var(--ink);
   padding-bottom: 6px;
@@ -193,7 +206,7 @@ button {
   align-items: baseline;
   padding: 6px 8px;
   border-radius: 6px;
-  font-size: 13px;
+  font-size: var(--fs-nav);
   color: var(--ink-soft);
   line-height: 1.5;
   text-align: left;
@@ -214,7 +227,7 @@ button {
 
 .toc-link__id {
   font-family: var(--mono);
-  font-size: 10.5px;
+  font-size: var(--fs-caption);
   color: var(--ink-faint);
   white-space: nowrap;
 }
@@ -230,7 +243,7 @@ button {
 
 .section-lede {
   margin: 6px 0 0;
-  font-size: 13.5px;
+  font-size: var(--fs-lede);
   color: var(--ink-muted);
 }
 
@@ -245,13 +258,13 @@ button {
 
 .chapter__name {
   margin: 0;
-  font-size: 15px;
+  font-size: var(--fs-chapter);
   font-weight: 700;
   color: var(--ink);
 }
 
 .chapter__count {
-  font-size: 11px;
+  font-size: var(--fs-badge);
   color: var(--ink-faint);
   font-family: var(--mono);
 }
@@ -295,7 +308,7 @@ button {
 
 .fold__num {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: var(--fs-badge);
   font-weight: 600;
   background: var(--brand);
   color: var(--ink);
@@ -306,7 +319,7 @@ button {
 
 .fold__title {
   flex: 1;
-  font-size: 14px;
+  font-size: var(--fs-body);
   font-weight: 500;
   color: var(--ink);
   line-height: 1.55;
@@ -316,7 +329,7 @@ button {
   width: 18px;
   text-align: center;
   color: var(--ink-faint);
-  font-size: 15px;
+  font-size: var(--fs-chapter);
   transition: transform .3s ease-out, color .3s ease-out;
 }
 
@@ -349,7 +362,7 @@ details[open].fold::details-content { height: auto; }
 
 .blk-text {
   margin: 0;
-  font-size: 14px;
+  font-size: var(--fs-body);
   line-height: 1.9;
   color: var(--ink-body);
 }
@@ -363,7 +376,7 @@ details[open].fold::details-content { height: auto; }
 }
 
 .blk-steps li {
-  font-size: 14px;
+  font-size: var(--fs-body);
   line-height: 1.8;
   color: var(--ink-body);
 }
@@ -388,7 +401,7 @@ details[open].fold::details-content { height: auto; }
 .blk-figure img:hover { border-color: var(--ink); }
 
 .blk-figure figcaption {
-  font-size: 10.5px;
+  font-size: var(--fs-caption);
   color: var(--ink-faint);
 }
 
@@ -416,7 +429,7 @@ details[open].fold::details-content { height: auto; }
 }
 
 .blk-row figcaption {
-  font-size: 9.5px;
+  font-size: var(--fs-caption-sm);
   color: var(--ink-faint);
 }
 
@@ -430,7 +443,7 @@ details[open].fold::details-content { height: auto; }
 }
 
 .blk-tip__badge {
-  font-size: 10px;
+  font-size: var(--fs-caption-sm);
   font-weight: 700;
   background: var(--brand);
   color: var(--ink);
@@ -443,7 +456,7 @@ details[open].fold::details-content { height: auto; }
 
 .blk-tip p {
   margin: 0;
-  font-size: 13.5px;
+  font-size: var(--fs-lede);
   line-height: 1.8;
   color: var(--ink-body);
 }
@@ -485,7 +498,7 @@ a.ext-link:hover { background: var(--brand); }
   display: flex;
   gap: 10px;
   align-items: center;
-  font-size: 13.5px;
+  font-size: var(--fs-lede);
   color: var(--ink-body);
 }
 
@@ -504,7 +517,7 @@ a.ext-link:hover { background: var(--brand); }
   padding-top: 18px;
   border-top: 1px solid var(--card-border);
   text-align: center;
-  font-size: 12px;
+  font-size: var(--fs-small);
   color: var(--ink-faint);
 }
 
@@ -553,8 +566,8 @@ a.ext-link:hover { background: var(--brand); }
   box-shadow: 0 1px 4px rgba(17, 18, 20, .14);
 }
 
-.fab__icon { font-size: 14px; line-height: 1; }
-.fab__label { font-size: 8px; margin-top: 1px; }
+.fab__icon { font-size: var(--fs-body); line-height: 1; }
+.fab__label { font-size: 9px; margin-top: 1px; }
 
 /* ---- 目錄抽屜 ------------------------------------------------------------- */
 
@@ -591,7 +604,7 @@ a.ext-link:hover { background: var(--brand); }
 }
 
 .drawer__title {
-  font-size: 12px;
+  font-size: var(--fs-small);
   font-weight: 700;
   letter-spacing: 3px;
   color: var(--ink);
@@ -599,7 +612,7 @@ a.ext-link:hover { background: var(--brand); }
 
 .drawer__close {
   color: var(--ink-faint);
-  font-size: 14px;
+  font-size: var(--fs-body);
   padding: 4px 6px;
   transition: color .1s ease-out, transform .1s ease-out;
 }
@@ -608,7 +621,7 @@ a.ext-link:hover { background: var(--brand); }
 .drawer__close:active { transform: scale(.92); }
 
 .drawer__panel .toc-group { margin-bottom: 14px; }
-.drawer__panel .toc-link { padding: 7px 6px; font-size: 12.5px; min-height: 30px; }
+.drawer__panel .toc-link { padding: 7px 6px; font-size: var(--fs-nav); min-height: 30px; }
 .drawer__panel .toc-link:hover { background: var(--toc-bg); }
 
 /* ---- 燈箱 ----------------------------------------------------------------- */
@@ -657,7 +670,7 @@ a.ext-link:hover { background: var(--brand); }
 }
 
 .lightbox__cap {
-  font-size: 11px;
+  font-size: var(--fs-badge);
   color: #D4D8E3;
   text-align: center;
   pointer-events: auto;
@@ -676,7 +689,7 @@ a.ext-link:hover { background: var(--brand); }
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
+  font-size: var(--fs-body);
   transition: background .1s ease-out, transform .1s ease-out;
 }
 
@@ -695,40 +708,49 @@ body.no-scroll { overflow: hidden; }
 /* ---- 行動版（<768px） ------------------------------------------------------ */
 
 @media (max-width: 767px) {
+  :root {
+    --fs-page-title: 24px;
+    --fs-page-subtitle: 15.5px;
+    --fs-section-title: 19px;
+    --fs-chapter: 15.5px;
+    --fs-body: 15px;
+    --fs-lede: 14.5px;
+    --fs-nav: 13.5px;
+    --fs-small: 12.5px;
+    --fs-badge: 11.5px;
+    --fs-caption: 11.5px;
+    --fs-caption-sm: 10.5px;
+  }
+
   .page { padding: 34px 18px 56px; }
 
-  .site-header__title { font-size: 20px; }
-  .site-header__subtitle { font-size: 13.5px; padding-left: 20px; }
-  .site-header__meta { font-size: 11px; }
+  .site-header__subtitle { padding-left: 20px; }
 
-  .section-title { font-size: 17px; }
-  .section-lede { font-size: 13px; line-height: 1.7; }
+  .section-lede { line-height: 1.7; }
 
-  .intro__body p { font-size: 13.5px; line-height: 1.8; }
+  .intro__body p { line-height: 1.8; }
 
   .toc { padding: 18px; }
   .toc__grid { grid-template-columns: 1fr; gap: 12px; }
   .toc-link { padding: 8px 6px; min-height: 32px; }
 
   .chapter { margin-top: 22px; }
-  .chapter__name { font-size: 14px; }
 
   .fold__summary { gap: 10px; padding: 12px 13px; }
-  .fold__num { font-size: 10px; padding: 3px 6px; }
-  .fold__title { font-size: 13px; line-height: 1.5; }
+  .fold__num { padding: 3px 6px; }
+  .fold__title { line-height: 1.5; }
   .fold__body { padding: 14px; gap: 11px; }
 
-  .blk-text { font-size: 13.5px; line-height: 1.85; }
+  .blk-text { line-height: 1.85; }
   .blk-steps { padding-left: 22px; gap: 6px; }
-  .blk-steps li { font-size: 13.5px; line-height: 1.75; }
-  .blk-tip p { font-size: 13px; line-height: 1.75; }
+  .blk-steps li { line-height: 1.75; }
+  .blk-tip p { line-height: 1.75; }
 
-  .section-tail { font-size: 13px; line-height: 1.6; padding: 13px 15px; }
+  .section-tail { line-height: 1.6; padding: 13px 15px; }
 
   .fab { right: 14px; bottom: 14px; gap: 9px; }
   .fab__btn { width: 44px; height: 44px; }
   .fab__label { display: none; }
-  .fab__icon { font-size: 15px; }
 
   .drawer__panel { width: 265px; padding: 20px 16px; }
 }
