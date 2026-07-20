@@ -655,18 +655,20 @@ a.ext-link:hover { background: var(--brand); }
   border-radius: 10px;
   background: #fff;
   pointer-events: auto;
-  cursor: zoom-in;
+  cursor: grab;
   transition: transform .2s ease;
   transform-origin: center center;
   animation: lbPop .2s ease-out;
 }
 
-.lightbox--zoomed .lightbox__stage { justify-content: flex-start; }
-
 .lightbox--zoomed .lightbox__img {
   max-width: none;
   max-height: none;
-  cursor: zoom-out;
+  cursor: grab;
+}
+
+.lightbox--zoomed .lightbox__img:active {
+  cursor: grabbing;
 }
 
 .lightbox__cap {

@@ -179,9 +179,16 @@
   var lbImg = document.getElementById('lightbox-img');
   var lbCap = document.getElementById('lightbox-cap');
   var lbScale = 1;
+  var lbTx = 0, lbTy = 0;
+  var lbDragging = false;
+  var lbDragMoved = false;
+  var lbDragStartX = 0, lbDragStartY = 0;
+  var lbDragStartTx = 0, lbDragStartTy = 0;
 
-  function applyLbScale() {
-    lbImg.style.transform = lbScale === 1 ? '' : 'scale(' + lbScale + ')';
+  function applyLbTransform() {
+    var t = (lbTx || lbTy) ? 'translate(' + lbTx + 'px, ' + lbTy + 'px) ' : '';
+    var s = lbScale === 1 ? '' : 'scale(' + lbScale + ')';
+    lbImg.style.transform = (t + s).trim();
   }
 
   function openLightbox(src, cap) {
@@ -189,24 +196,55 @@
     lbImg.alt = cap;
     lbCap.textContent = cap;
     lbScale = 1;
+    lbTx = 0;
+    lbTy = 0;
     lightbox.classList.remove('lightbox--zoomed');
-    applyLbScale();
+    applyLbTransform();
     lightbox.hidden = false;
     document.body.classList.add('no-scroll');
   }
 
   function closeLightbox() {
     lightbox.hidden = true;
-    lbImg.src = '';
     document.body.classList.remove('no-scroll');
   }
 
   // 點圖片：放大至原始解析度 ↔ 還原；滾輪：連續縮放
   lbImg.addEventListener('click', function () {
+    if (lbDragMoved) return; // 剛拖曳完，不觸發縮放切換
     lbScale = 1;
-    applyLbScale();
+    lbTx = 0;
+    lbTy = 0;
+    applyLbTransform();
     lightbox.classList.toggle('lightbox--zoomed');
   });
+
+  // 放大狀態下按住滑鼠拖曳，自由平移（不限邊界）
+  lbImg.addEventListener('mousedown', function (e) {
+    if (!lightbox.classList.contains('lightbox--zoomed')) return;
+    lbDragging = true;
+    lbDragMoved = false;
+    lbDragStartX = e.clientX;
+    lbDragStartY = e.clientY;
+    lbDragStartTx = lbTx;
+    lbDragStartTy = lbTy;
+    lbImg.style.transition = 'none';
+    e.preventDefault();
+  });
+  document.addEventListener('mousemove', function (e) {
+    if (!lbDragging) return;
+    var dx = e.clientX - lbDragStartX;
+    var dy = e.clientY - lbDragStartY;
+    if (Math.abs(dx) > 3 || Math.abs(dy) > 3) lbDragMoved = true;
+    lbTx = lbDragStartTx + dx;
+    lbTy = lbDragStartTy + dy;
+    applyLbTransform();
+  });
+  document.addEventListener('mouseup', function () {
+    lbDragging = false;
+    lbImg.style.transition = '';
+  });
+
   lightbox.addEventListener('wheel', function (e) {
     e.preventDefault();
     if (!lightbox.classList.contains('lightbox--zoomed')) {
@@ -214,7 +252,7 @@
       lbScale = 1;
     }
     lbScale = Math.min(4, Math.max(0.3, lbScale * (e.deltaY < 0 ? 1.12 : 0.9)));
-    applyLbScale();
+    applyLbTransform();
   }, { passive: false });
   document.getElementById('lightbox-overlay').addEventListener('click', closeLightbox);
   document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
