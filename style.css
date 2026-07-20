@@ -647,6 +647,7 @@ a.ext-link:hover { background: var(--brand); }
   padding: 48px 20px 24px;
   pointer-events: none;
   overflow: auto;
+  touch-action: none;
 }
 
 .lightbox__img {

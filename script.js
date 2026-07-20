@@ -254,6 +254,36 @@
     lbScale = Math.min(4, Math.max(0.3, lbScale * (e.deltaY < 0 ? 1.12 : 0.9)));
     applyLbTransform();
   }, { passive: false });
+
+  // 行動裝置雙指縮放：只放大圖片本身，不觸發瀏覽器整頁縮放
+  var lbPinchDist = 0;
+  var lbPinchStartScale = 1;
+
+  function touchDist(touches) {
+    var dx = touches[0].clientX - touches[1].clientX;
+    var dy = touches[0].clientY - touches[1].clientY;
+    return Math.sqrt(dx * dx + dy * dy);
+  }
+
+  lightbox.addEventListener('touchstart', function (e) {
+    if (e.touches.length === 2) {
+      lbPinchDist = touchDist(e.touches);
+      lbPinchStartScale = lbScale;
+    }
+  }, { passive: true });
+
+  lightbox.addEventListener('touchmove', function (e) {
+    if (e.touches.length === 2) {
+      e.preventDefault();
+      var newDist = touchDist(e.touches);
+      if (lbPinchDist > 0) {
+        lbScale = Math.min(4, Math.max(0.3, lbPinchStartScale * (newDist / lbPinchDist)));
+        lightbox.classList.add('lightbox--zoomed');
+        applyLbTransform();
+      }
+    }
+  }, { passive: false });
+
   document.getElementById('lightbox-overlay').addEventListener('click', closeLightbox);
   document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
 
